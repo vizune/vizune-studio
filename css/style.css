@@ -1,0 +1,541 @@
+/* ==========================================================================
+   Vizune — Coming Soon
+   Colours, type and assets follow the Vizune Brand Guideline by Cloverie Design
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   Fonts
+   Chubby Gum is the brand headline face. Once the WEBFONT licence is bought,
+   drop the .woff2 into assets/fonts/ and uncomment the block below — the
+   --font-display stack already lists "Chubby Gum" first, so it takes over
+   automatically. Until then, Bagel Fat One (free, OFL) stands in.
+   ------------------------------------------------------------------------- */
+/*
+@font-face {
+  font-family: "Chubby Gum";
+  src: url("../assets/fonts/ChubbyGum.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+:root {
+  /* Brand palette */
+  --shiny-black: #252525;
+  --royal-nightcore: #5642ca;
+  --jovial-jade: #89e8af;
+  --epicurean-orange: #e8660e;
+  --violet-punk: #a863ff;
+  --melrose: #cbc2ff;
+  --paris-pink: #ffc7ef;
+  --sweet-cream: #f0e9e7;
+
+  --font-display: "Chubby Gum", "Bagel Fat One", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --font-body: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --ease-bounce: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--royal-nightcore);
+  color: var(--sweet-cream);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Page shell
+   ------------------------------------------------------------------------- */
+.page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vh, 3rem) 1rem clamp(7rem, 14vh, 9rem);
+  overflow: hidden;
+
+  /* Faint brand pattern texture + soft glow behind the logo */
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 35%, rgb(168 99 255 / .35), transparent 70%),
+    url("../assets/img/pattern.webp") center / 234px 300px repeat,  /* exact repeat of the brand pattern */
+    var(--royal-nightcore);
+  background-blend-mode: normal, soft-light, normal;
+}
+
+/* Tone the pattern down so it reads as texture, not wallpaper */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: rgb(86 66 202 / .9);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.defs { position: absolute; }
+
+/* -------------------------------------------------------------------------
+   Content
+   ------------------------------------------------------------------------- */
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 64rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  width: clamp(14rem, min(30vw, 36vh), 24rem);
+  margin-bottom: clamp(.25rem, 1.5vh, 1rem);
+}
+
+/* -------------------------------------------------------------------------
+   Animated logo (js/logo-anim.js)
+   ------------------------------------------------------------------------- */
+.logo-button {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  -webkit-tap-highlight-color: transparent;
+}
+.logo-button:focus-visible { outline: 3px solid var(--jovial-jade); outline-offset: 6px; }
+
+.vz { display: block; width: 100%; height: auto; overflow: visible; transform-origin: 50% 60%; }
+.vz [data-part], .vz-glint {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+.vz [data-part="head"], .vz [data-part^="paw"] { transform-origin: 50% 100%; }
+.vz [data-part="filler"] { opacity: 0; }
+/* Moving jade outline: only visible while the animation plays */
+.vz-live-outline { visibility: hidden; }
+
+/* Hide the finished logo until the script starts the animation.
+   Safety net: if the script never runs, show it anyway after 2s. */
+.vz-pending .vz { opacity: 0; animation: vz-show 0s 2s forwards; }
+@keyframes vz-show { to { opacity: 1; } }
+
+.eyebrow {
+  margin: 0 0 .35rem;
+  font-size: clamp(.72rem, 1.6vw, .85rem);
+  font-weight: 700;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--jovial-jade);
+  animation: rise .8s .1s var(--ease-bounce) both;
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.4rem, min(10vw, 14vh), 7.25rem);
+  line-height: .92;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: var(--sweet-cream);
+  text-wrap: balance;
+  animation: rise .9s .18s var(--ease-bounce) both;
+}
+
+.lede,
+.sublede {
+  max-width: 38rem;
+  text-wrap: pretty;
+  animation: rise .8s .28s var(--ease-bounce) both;
+}
+
+.lede {
+  margin: clamp(1rem, 2.5vh, 1.5rem) 0 .5rem;
+  font-size: clamp(.95rem, 2vw, 1.15rem);
+  letter-spacing: .02em;
+}
+
+.sublede {
+  margin: 0 0 clamp(1.25rem, 3vh, 2rem);
+  font-size: clamp(.85rem, 1.6vw, .95rem);
+  color: var(--melrose);
+}
+
+/* -------------------------------------------------------------------------
+   Sign-up form
+   ------------------------------------------------------------------------- */
+.signup {
+  display: flex;
+  width: min(100%, 36rem);
+  padding: 5px;
+  background: var(--sweet-cream);
+  border: 3px solid var(--shiny-black);
+  border-radius: 999px;
+  box-shadow: 0 6px 0 var(--shiny-black);
+  animation: rise .8s .38s var(--ease-bounce) both;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.signup:focus-within {
+  box-shadow: 0 6px 0 var(--shiny-black), 0 0 0 5px var(--jovial-jade);
+}
+
+.signup__field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  min-width: 0;
+  padding-left: 1rem;
+}
+
+.signup__icon {
+  flex: none;
+  width: 1.3rem;
+  height: 1.3rem;
+  fill: none;
+  stroke: var(--shiny-black);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+.signup input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  padding: .85rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--shiny-black);
+  font: inherit;
+  font-size: .95rem;
+  outline: none;
+}
+
+.signup input::placeholder { color: #6b6578; opacity: 1; }
+
+.signup__button {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .8rem 1.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--epicurean-orange);
+  color: var(--shiny-black);
+  font-family: var(--font-body);
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .2s var(--ease-bounce);
+}
+
+.signup__button:hover { background: #ff7a1f; transform: scale(1.03); }
+.signup__button:active { transform: scale(.97); }
+.signup__button:focus-visible { outline: 3px solid var(--shiny-black); outline-offset: 2px; }
+.signup__button[disabled] { cursor: progress; opacity: .75; }
+
+.signup__spark {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--shiny-black);
+  transition: transform .5s var(--ease-bounce);
+}
+.signup__button:hover .signup__spark { transform: rotate(90deg) scale(1.2); }
+
+.signup__status {
+  min-height: 1.6em;
+  margin: .9rem 0 0;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--jovial-jade);
+}
+.signup__status.is-error { color: var(--paris-pink); }
+
+.signup__note {
+  margin: 0 0 1rem;
+  font-size: .78rem;
+  color: var(--melrose);
+  animation: rise .8s .45s var(--ease-bounce) both;
+}
+
+/* Success state swaps the pill for a little celebration */
+.signup.is-done {
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  color: var(--shiny-black);
+  font-weight: 700;
+}
+
+/* Secondary call to action: a jade sticker-style pill, so it reads as a
+   button but stays quieter than the orange "Keep me posted" */
+.elsewhere {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: .35rem;
+  padding: .7rem 1.35rem;
+  background: var(--jovial-jade);
+  color: var(--shiny-black);
+  border: 3px solid var(--shiny-black);
+  border-radius: 999px;
+  box-shadow: 0 5px 0 var(--shiny-black);
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .2s var(--ease-bounce), box-shadow .2s ease, background-color .2s ease;
+  animation: rise .8s .5s var(--ease-bounce) both;
+}
+.elsewhere:hover {
+  background: #a4f0c3;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--shiny-black);
+}
+.elsewhere:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--shiny-black); }
+.elsewhere:focus-visible { outline: 3px solid var(--sweet-cream); outline-offset: 4px; }
+.elsewhere span { transition: transform .2s ease; }
+.elsewhere:hover span { transform: translateX(4px); }
+
+.footer {
+  position: absolute;
+  left: 0; right: 0; bottom: .75rem;
+  z-index: 1;
+  text-align: center;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: var(--melrose);
+}
+.footer p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem .6rem;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.credit-link {
+  display: inline-block;
+  position: relative;
+  padding: .05em .2em;
+  margin: 0 -.2em;
+  border-radius: .3em;
+  color: var(--paris-pink);
+  font-weight: 700;
+  text-decoration: none;
+  background-image: linear-gradient(var(--paris-pink), var(--paris-pink));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1.5px;
+  transition: background-size .3s var(--ease-bounce), color .2s ease;
+}
+.credit-link:hover {
+  color: var(--shiny-black);
+  background-size: 100% 100%;
+}
+.credit-link:focus-visible {
+  outline: 2px solid var(--paris-pink);
+  outline-offset: 3px;
+}
+
+.footer__star {
+  width: .7rem;
+  height: .7rem;
+  fill: var(--epicurean-orange);
+}
+
+/* -------------------------------------------------------------------------
+   Decorations
+   ------------------------------------------------------------------------- */
+.deco { position: absolute; user-select: none; }
+
+.moon {
+  top: clamp(1rem, 4vh, 2.5rem);
+  width: clamp(7rem, 19vw, 17rem);
+  animation: float 9s ease-in-out infinite;
+}
+.moon--left  { left: clamp(.5rem, 4vw, 4rem); rotate: -6deg; }
+.moon--right { right: clamp(.5rem, 4vw, 4rem); scale: -1 1; rotate: 6deg; animation-delay: -4s; }
+
+.swirl {
+  width: clamp(3rem, 6vw, 5.5rem);
+  animation: spin 40s linear infinite;
+}
+.swirl--left  { left: 8%;  top: 46%; }
+.swirl--right { right: 9%; top: 52%; animation-direction: reverse; }
+
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  width: var(--s, 22px);
+  height: var(--s, 22px);
+  fill: var(--c, var(--sweet-cream));
+  animation: twinkle var(--d, 3.2s) var(--delay, 0s) ease-in-out infinite;
+}
+.s1  { --s: 30px; --c: var(--epicurean-orange); top: calc(14% + 150px); left: 6%;  --delay: -.4s; }
+.s2  { --s: 22px; --c: var(--paris-pink);       top: 9%;  left: 28%; --delay: -1.6s; }
+.s3  { --s: 34px; --c: var(--epicurean-orange); top: 31%; left: 23%; --delay: -2.2s; --d: 3.8s; }
+.s4  { --s: 18px; --c: var(--sweet-cream);      top: 58%; left: 18%; --delay: -.9s; }
+.s5  { --s: 26px; --c: var(--jovial-jade);      top: 6%;  right: 30%; --delay: -1.2s; }
+.s6  { --s: 32px; --c: var(--epicurean-orange); top: 30%; right: 22%; --delay: -2.8s; --d: 4s; }
+.s7  { --s: 20px; --c: var(--paris-pink);       top: 44%; right: 6%;  --delay: -.2s; }
+.s8  { --s: 16px; --c: var(--sweet-cream);      top: 64%; right: 20%; --delay: -1.9s; }
+.s9  { --s: 24px; --c: var(--paris-pink);       top: 70%; left: 4%;   --delay: -3s; }
+.s10 { --s: 14px; --c: var(--jovial-jade);      top: 22%; left: calc(45% - 150px); --delay: -2.4s; }
+
+/* Cloud banks */
+.clouds {
+  position: absolute;
+  bottom: 0;
+  width: clamp(15rem, 36vw, 36rem);
+  aspect-ratio: 2 / 1;
+}
+.clouds--left  { left: 0; }
+.clouds--right { right: 0; }
+
+.cloud {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.clouds--right .cloud { scale: -1 1; }
+
+.c-back  { fill: var(--melrose); }
+.c-mid   { fill: var(--paris-pink); }
+.c-front { fill: var(--jovial-jade); }
+
+.potion {
+  width: 22%;
+  left: 54%;
+  bottom: 18%;
+  rotate: 8deg;
+  animation: float 6s -1s ease-in-out infinite;
+}
+.mascot {
+  width: 30%;
+  left: 14%;
+  bottom: 22%;
+  rotate: -6deg;
+  animation: float 5.5s ease-in-out infinite;
+}
+.head {
+  width: 26%;
+  right: 16%;
+  bottom: 38%;
+  rotate: 8deg;
+  animation: float 6.5s -2s ease-in-out infinite;
+}
+.teapot {
+  width: 34%;
+  right: 46%;
+  bottom: 14%;
+  rotate: -5deg;
+  animation: float 7s -3s ease-in-out infinite;
+}
+
+/* -------------------------------------------------------------------------
+   Motion
+   ------------------------------------------------------------------------- */
+@keyframes float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -10px; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes twinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50%      { transform: scale(.55) rotate(45deg); opacity: .55; }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Smaller screens
+   ------------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  .page { justify-content: flex-start; padding-top: 5.5rem; padding-bottom: 11rem; }
+  .moon { width: 6.5rem; top: .75rem; }
+  .moon--left { left: -.75rem; }
+  .moon--right { right: -.75rem; }
+  .swirl { display: none; }
+  .s3, .s4, .s6, .s7, .s8, .s10 { display: none; }
+  .footer { color: var(--shiny-black); }
+  .footer p { flex-direction: column; gap: .1rem; }
+  .footer__star { display: none; }
+  /* Footer sits on the jade cloud on phones: switch the link to purple */
+  .credit-link { color: var(--royal-nightcore); background-image: linear-gradient(var(--royal-nightcore), var(--royal-nightcore)); }
+  .credit-link:hover { color: var(--sweet-cream); }
+  .clouds { width: 62vw; }
+  .head, .potion { display: none; }
+  .mascot { width: 30%; left: 6%; bottom: 42%; }
+  .teapot { width: 36%; right: 10%; bottom: 40%; }
+}
+
+@media (max-width: 520px) {
+  .signup {
+    flex-direction: column;
+    gap: 6px;
+    border-radius: 1.75rem;
+  }
+  .signup__field { padding: 0 .75rem; }
+  .signup__button { justify-content: center; padding: .9rem 1rem; }
+}
+
+/* Short, wide screens (small laptops): tighten vertical rhythm */
+@media (min-width: 721px) and (max-height: 760px) {
+  .logo { width: clamp(12rem, 24vw, 19rem); }
+  .headline { font-size: clamp(3rem, 9vw, 6.5rem); }
+  .page { padding-bottom: 6rem; }
+}
+
+@media (max-width: 900px) {
+  .swirl { display: none; }
+}
+.signup.is-done { border-radius: 2rem; text-align: center; }
