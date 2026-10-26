@@ -26,7 +26,8 @@
 
   function done() {
     form.classList.add("is-done");
-    form.innerHTML = "<span>✦ Almost there! Check your inbox to confirm your email. ✦</span>";
+    // Non-breaking spaces keep each sparkle attached to its neighbouring word
+    form.innerHTML = "<span>✦\u00a0Almost there! Check your inbox to confirm your\u00a0email.\u00a0✦</span>";
     say("");
   }
 
