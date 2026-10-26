@@ -3,22 +3,30 @@
    Colours, type and assets follow the Vizune Brand Guideline by Cloverie Design
    ========================================================================== */
 
-/* -------------------------------------------------------------------------
-   Fonts
-   Chubby Gum is the brand headline face. Once the WEBFONT licence is bought,
-   drop the .woff2 into assets/fonts/ and uncomment the block below — the
-   --font-display stack already lists "Chubby Gum" first, so it takes over
-   automatically. Until then, Bagel Fat One (free, OFL) stands in.
-   ------------------------------------------------------------------------- */
-/*
+/**
+ * @license
+ * MyFonts Webfont Build ID 3867246, 2020-12-16T11:57:38-0500
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: Chubby Gum by Agny Hasya Studio
+ * URL: https://www.myfonts.com/collections/agny-hasya-studio-foundry
+ * © 2026 MyFonts Inc.
+ */
+
+/* Chubby Gum: brand headline face (licensed webfont, see notice above) */
 @font-face {
   font-family: "Chubby Gum";
-  src: url("../assets/fonts/ChubbyGum.woff2") format("woff2");
+  src: url("../assets/fonts/ChubbyGum.woff2") format("woff2"),
+       url("../assets/fonts/ChubbyGum.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-*/
 
 :root {
   /* Brand palette */
@@ -31,7 +39,7 @@
   --paris-pink: #ffc7ef;
   --sweet-cream: #f0e9e7;
 
-  --font-display: "Chubby Gum", "Bagel Fat One", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --font-display: "Chubby Gum", "Arial Rounded MT Bold", system-ui, sans-serif;
   --font-body: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
   --ease-bounce: cubic-bezier(.34, 1.56, .64, 1);

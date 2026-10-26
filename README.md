@@ -12,32 +12,26 @@ css/style.css       all styles, with brand colours as CSS variables in :root
 js/main.js          sign-up form handling and footer year
 js/logo-anim.js     the animated logo (click to replay)
 assets/img/         web-optimised brand assets (WebP), favicon, social card
-assets/fonts/       drop the licensed Chubby Gum webfont here
+assets/fonts/       Chubby Gum webfont (licensed via MyFonts)
 favicon.ico
 ```
 
 ## Before launch checklist
 
-- [ ] **Chubby Gum webfont licence.** Buy a *webfont* licence. A desktop licence usually doesn't cover `@font-face` use on a website.
+- [x] **Chubby Gum webfont licence.** Bought and installed.
 - [ ] **Email sign-up endpoint.** Set `data-endpoint` on the form (see below).
-- [ ] **"Visit Vizune.net" link.** Check that the URL in `index.html` is the one you want.
 - [ ] **Domain.** The social-card tags assume `https://vizune.com/`.
 
 ## Fonts
 
-| Role | Brand font | Status |
+| Role | Font | Source |
 | --- | --- | --- |
-| Headlines | **Chubby Gum** | Licence to buy. Until then, **Bagel Fat One** (free, OFL) stands in |
-| Body | **Roboto Mono** | Free (OFL), no purchase needed |
+| Headlines | **Chubby Gum** by Agny Hasya Studio | Licensed MyFonts webfont (annual, 10k page views/month), self-hosted in `assets/fonts/` |
+| Body | **Roboto Mono** | Free (OFL), loaded from Google Fonts |
 
-**To switch on Chubby Gum** once it's licensed:
-
-1. Save the webfont as `assets/fonts/ChubbyGum.woff2`.
-2. In `css/style.css`, uncomment the `@font-face` block at the top.
-
-The `--font-display` stack already lists `"Chubby Gum"` first, so it takes over automatically. You can then remove `Bagel+Fat+One&` from the Google Fonts link in `index.html`.
-
-**Optional: self-host Roboto Mono.** The fonts currently load from Google Fonts. For a page with no third-party requests (nice for UK GDPR), download Roboto Mono from Google Fonts. Put the `.woff2` files in `assets/fonts/`, add `@font-face` rules for them, and remove the Google Fonts `<link>` tags.
+- Keep the MyFonts `@license` comment at the top of `css/style.css`. The webfont licence requires it.
+- The Chubby Gum webfont licence covers **vizune.com only** and renews every year. Don't reuse these font files on other sites (such as Vizune Reviews) without a separate licence.
+- **Optional: self-host Roboto Mono.** For a page with no third-party requests, download Roboto Mono from Google Fonts. Put the `.woff2` files in `assets/fonts/`, add `@font-face` rules for them, and remove the Google Fonts `<link>` tags.
 
 ## Email sign-up
 
