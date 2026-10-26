@@ -2,7 +2,7 @@
 
 The coming-soon splash page for **vizune.com**, the home of Vizune Game Studio.
 
-It's plain HTML, CSS and a small amount of vanilla JS, with no build step and no dependencies. Open `index.html` in a browser, or host the folder on any static host (GitHub Pages, Netlify, Cloudflare Pages, Nekoweb…).
+It's plain HTML, CSS and a small amount of vanilla JS, with no build step and no dependencies. Open `index.html` in a browser, or host the folder on any static host. It's planned for **Netlify**: publish directory `/`, no build command.
 
 Branding, colours, illustrations and typography follow the **Vizune Brand Guideline** by Cloverie Design.
 
@@ -19,7 +19,7 @@ favicon.ico
 ## Before launch checklist
 
 - [x] **Chubby Gum webfont licence.** Bought and installed.
-- [ ] **Email sign-up endpoint.** Set `data-endpoint` on the form (see below).
+- [x] **Kit form ID.** Connected (form 10099687).
 - [ ] **Domain.** The social-card tags assume `https://vizune.com/`.
 
 ## Fonts
@@ -33,19 +33,27 @@ favicon.ico
 - The Chubby Gum webfont licence covers **vizune.com only** and renews every year. Don't reuse these font files on other sites (such as Vizune Reviews) without a separate licence.
 - **Optional: self-host Roboto Mono.** For a page with no third-party requests, download Roboto Mono from Google Fonts. Put the `.woff2` files in `assets/fonts/`, add `@font-face` rules for them, and remove the Google Fonts `<link>` tags.
 
-## Email sign-up
+## Email sign-up (Kit)
 
-The form posts the email address (as `FormData`, field `email`) to whatever URL is in `data-endpoint`:
+The form sends sign-ups straight to a **Kit** (kit.com) form, with no server or API key needed.
 
-```html
-<form class="signup" id="signup" data-endpoint="https://YOUR-PROVIDER/endpoint" novalidate>
-```
+**One-time setup**
 
-That works with services that accept a plain form POST and allow cross-origin requests, such as Formspree, Buttondown, Kit (ConvertKit) or Netlify Forms.
+1. In Kit, go to **Grow → Landing Pages & Forms → Create new → Form → Inline**, and pick any template (the page uses its own design).
+2. In the form's **Settings**:
+   - **Incentive:** leave "Send incentive email" on. This is double opt-in, which is good practice under UK GDPR. You can customise the confirmation email in Vizune's voice.
+   - **After subscribing:** choose *Redirect to an external page* and enter `https://vizune.com/?subscribed=1`.
+3. Click **Publish → HTML** and find the number in the action URL `https://app.kit.com/forms/1234567/subscriptions`.
+4. In `index.html`, replace **both** `KIT_FORM_ID` placeholders on the `<form>` with that number.
 
-- A 2xx response shows the "You're on the list!" state. Anything else shows a friendly retry message.
-- With no endpoint set, the form says "Sign-ups open very soon" and logs a console warning. Nothing gets lost silently.
-- A hidden honeypot field (`website`) quietly drops bot submissions.
+**How it behaves**
+
+- It posts the email (`email_address`) to Kit in the background and shows "Almost there! Check your inbox to confirm".
+- If Kit rejects the address, Kit's message is shown under the form.
+- If the browser blocks the background request, it falls back to a normal form post to Kit. Kit then redirects back to `/?subscribed=1`, which shows the same success message.
+- It also works with JavaScript switched off, using the plain form `action`.
+- A hidden honeypot field (`website`) quietly drops bot sign-ups. It's never sent to Kit.
+- Until `KIT_FORM_ID` is replaced, the form says "Sign-ups open very soon".
 
 ## Assets used
 

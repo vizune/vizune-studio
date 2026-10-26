@@ -117,17 +117,21 @@
       <p class="sublede">A new world is bubbling away — stay tuned for the reveal.</p>
 
       <!--
-        Sign-up form. Set data-endpoint to your email provider's form URL
-        (e.g. Buttondown, Formspree, Kit, Mailchimp embed action). See README.
+        Sign-up form, connected to Kit (kit.com).
+        Kit form ID 10099687 is used in BOTH places below; change both if you swap forms
+        (find it in Kit: your form > Embed > HTML, in the action URL
+        https://app.kit.com/forms/1234567/subscriptions). See README.
       -->
-      <form class="signup" id="signup" data-endpoint="" novalidate>
+      <form class="signup" id="signup" novalidate
+            data-kit-form="10099687"
+            action="https://app.kit.com/forms/10099687/subscriptions" method="post">
         <label class="visually-hidden" for="email">Email address</label>
         <div class="signup__field">
           <svg class="signup__icon" viewBox="0 0 24 24" aria-hidden="true">
             <rect x="2.5" y="5" width="19" height="14" rx="2.5"/>
             <path d="M3.5 6.5 12 13l8.5-6.5"/>
           </svg>
-          <input id="email" name="email" type="email" autocomplete="email" inputmode="email"
+          <input id="email" name="email_address" type="email" autocomplete="email" inputmode="email"
                  placeholder="Enter your email for updates" required>
           <!-- Honeypot: bots fill this in, humans never see it -->
           <input class="visually-hidden" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
