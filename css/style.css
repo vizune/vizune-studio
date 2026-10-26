@@ -322,8 +322,8 @@ img { display: block; max-width: 100%; height: auto; }
   border: 3px solid var(--shiny-black);
   border-radius: 999px;
   box-shadow: 0 5px 0 var(--shiny-black);
-  font-size: .9rem;
-  font-weight: 700;
+  font-family: "Chubby Gum";
+  font-size: 1.25rem;
   letter-spacing: .06em;
   text-transform: uppercase;
   text-decoration: none;
