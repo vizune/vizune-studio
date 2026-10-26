@@ -522,8 +522,22 @@ img { display: block; max-width: 100%; height: auto; }
   .credit-link { color: var(--royal-nightcore); background-image: linear-gradient(var(--royal-nightcore), var(--royal-nightcore)); }
   .credit-link:hover { color: var(--sweet-cream); }
   .clouds { width: 62vw; }
-  .head, .potion { display: none; }
-  .mascot { width: 30%; left: 6%; bottom: 42%; }
+  .head, .mascot { display: none; }
+  .potion { width: 20%; left: 12%; bottom: 41%; }
+
+  /* Pink sparkle tucked at the bottom-right of the headline */
+  .headline::after {
+    content: "";
+    display: inline-block;   /* sits right after the last letter of "SOON" */
+    vertical-align: baseline;
+    margin: 0 -30px 0 6px;   /* negative right margin keeps the text centred */
+    width: 24px;
+    height: 24px;
+    background: var(--paris-pink);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C55 32 68 45 100 50C68 55 55 68 50 100C45 68 32 55 0 50C32 45 45 32 50 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C55 32 68 45 100 50C68 55 55 68 50 100C45 68 32 55 0 50C32 45 45 32 50 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    animation: twinkle 3.2s -3s ease-in-out infinite;
+  }
   .teapot { width: 36%; right: 10%; bottom: 40%; }
 }
 
