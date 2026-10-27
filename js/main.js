@@ -85,7 +85,9 @@
     })
       .then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) {
-          if (res.ok && (!data.status || data.status === "success")) return done();
+          // Only celebrate when Kit explicitly says the sign-up worked
+          if (res.ok && data.status === "success") return done();
+          console.warn("[Vizune] Unexpected Kit response", res.status, data);
           var msg = data && data.errors && data.errors.messages && data.errors.messages[0];
           throw { message: msg || "", handled: Boolean(msg) };
         });

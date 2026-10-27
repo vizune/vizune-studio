@@ -11,6 +11,7 @@ index.html          the page
 css/style.css       all styles, with brand colours as CSS variables in :root
 js/main.js          sign-up form handling and footer year
 js/logo-anim.js     the animated logo (click to replay)
+email/              Kit HTML email template + its images
 assets/img/         web-optimised brand assets (WebP), favicon, social card
 assets/fonts/       Chubby Gum webfont (licensed via MyFonts)
 favicon.ico
@@ -54,6 +55,16 @@ The form sends sign-ups straight to a **Kit** (kit.com) form, with no server or 
 - It also works with JavaScript switched off, using the plain form `action`.
 - A hidden honeypot field (`website`) quietly drops bot sign-ups. It's never sent to Kit.
 - Until `KIT_FORM_ID` is replaced, the form says "Sign-ups open very soon".
+
+## Email template (Kit)
+
+`email/kit-template.html` is a Vizune-branded custom HTML template for Kit. It has a purple backdrop, the header banner, a cream content card, a sign-off with the brand mark, and a footer with unsubscribe and address.
+
+- **Images:** `email/header.png` and `email/brandmark.png` are served from `https://vizune.com/email/…`, so push the repo before using the template. PNG is used because many email apps don't support WebP.
+- **Fonts:** Chubby Gum isn't used as live text, because that needs a separate Digital Ad/Email licence. It only appears inside images. Text uses Roboto Mono, falling back to Menlo, Consolas or Courier New.
+- **Required Kit tags:** `{{ message_content }}`, `{{ unsubscribe_url }}` and `{{ address }}`. There's also an optional `{{ subscriber_preferences_url }}`.
+
+**To install:** in Kit, go to **Email Templates → + New Email Template → Create HTML Template**. Paste in the whole file, name it "Vizune", save, check **Preview Layout**, then use the ⋯ menu to **Set as default**.
 
 ## Assets used
 

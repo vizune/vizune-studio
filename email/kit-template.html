@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <title>Vizune</title>
+  <!--[if mso]>
+  <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+  <![endif]-->
+  <!--
+    Vizune: Kit custom HTML email template
+    Brand: Vizune Brand Guideline (Cloverie Design)
+    Note: Chubby Gum is NOT used as live text here (needs a Digital Ad/Email licence).
+          Brand lettering only appears inside images. Text uses Roboto Mono.
+    Required Kit tags: {{ message_content }}, {{ unsubscribe_url }}, {{ address }}
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Resets */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
+    body { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+
+    /* Content written in Kit's editor lands inside .vz-content */
+    .vz-content { font-family: 'Roboto Mono', Menlo, Consolas, 'Courier New', monospace; font-size: 15px; line-height: 1.7; color: #252525; }
+    .vz-content p { margin: 0 0 18px; }
+    .vz-content h1, .vz-content h2, .vz-content h3 {
+      font-family: 'Roboto Mono', Menlo, Consolas, 'Courier New', monospace;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+      color: #5642ca; margin: 28px 0 12px; line-height: 1.25;
+    }
+    .vz-content h1 { font-size: 24px; margin-top: 0; }
+    .vz-content h2 { font-size: 19px; }
+    .vz-content h3 { font-size: 16px; color: #252525; }
+    .vz-content a { color: #5642ca; font-weight: 700; text-decoration: underline; }
+    .vz-content strong, .vz-content b { color: #252525; }
+    .vz-content img { max-width: 100% !important; height: auto !important; border-radius: 14px; }
+    .vz-content ul, .vz-content ol { margin: 0 0 18px; padding-left: 22px; }
+    .vz-content li { margin: 0 0 8px; }
+    .vz-content blockquote { margin: 0 0 18px; padding: 14px 18px; background: #cbc2ff; border-left: 5px solid #5642ca; border-radius: 10px; }
+    .vz-content hr { border: 0; border-top: 2px dashed #cbc2ff; margin: 26px 0; }
+    /* Kit editor buttons */
+    .vz-content .btn a, .vz-content a.btn, .vz-content .button a, .vz-content a.button {
+      display: inline-block; background: #e8660e !important; color: #252525 !important;
+      border: 3px solid #252525; border-radius: 999px; padding: 12px 24px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none !important;
+    }
+
+    .vz-footer a { color: #ffc7ef; text-decoration: underline; }
+
+    @media screen and (max-width: 620px) {
+      .vz-container { width: 100% !important; }
+      .vz-pad { padding-left: 22px !important; padding-right: 22px !important; }
+      .vz-content { font-size: 15px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0; padding:0; background-color:#5642ca;">
+  <!-- Outer purple backdrop -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#5642ca" style="background-color:#5642ca;">
+    <tr>
+      <td align="center" style="padding:28px 12px;">
+
+        <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+        <table role="presentation" class="vz-container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px;">
+
+          <!-- Header banner -->
+          <tr>
+            <td align="center" style="padding:0;">
+              <a href="https://vizune.com" target="_blank" style="text-decoration:none;">
+                <img src="https://vizune.com/email/header.png" width="600" alt="Vizune" style="display:block; width:100%; max-width:600px; height:auto; border-radius:22px 22px 0 0;">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Body card -->
+          <tr>
+            <td bgcolor="#f0e9e7" class="vz-pad" style="background-color:#f0e9e7; padding:36px 44px 20px;">
+              <div class="vz-content" style="font-family:'Roboto Mono', Menlo, Consolas, 'Courier New', monospace; font-size:15px; line-height:1.7; color:#252525;">
+                {{ message_content }}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Sign-off -->
+          <tr>
+            <td bgcolor="#f0e9e7" class="vz-pad" style="background-color:#f0e9e7; padding:0 44px 36px; border-radius:0 0 22px 22px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border-top:2px dashed #cbc2ff; padding-top:22px; font-family:'Roboto Mono', Menlo, Consolas, 'Courier New', monospace; font-size:13px; line-height:1.6; color:#5642ca;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td valign="middle" style="padding-right:14px;">
+                          <img src="https://vizune.com/email/brandmark.png" width="56" alt="" style="display:block; width:56px; height:auto;">
+                        </td>
+                        <td valign="middle" style="font-family:'Roboto Mono', Menlo, Consolas, 'Courier New', monospace; font-size:13px; line-height:1.6; color:#252525;">
+                          <strong style="color:#5642ca; text-transform:uppercase; letter-spacing:0.08em;">Vizune Game Studio</strong><br>
+                          Imaginative worlds, brewing in Manchester.
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" class="vz-footer vz-pad" style="padding:26px 30px 8px; font-family:'Roboto Mono', Menlo, Consolas, 'Courier New', monospace; font-size:12px; line-height:1.7; color:#cbc2ff;">
+              <a href="https://vizune.com" target="_blank" style="color:#89e8af; font-weight:700; text-decoration:none; letter-spacing:0.08em;">VIZUNE.COM</a>
+              <span style="color:#e8660e;">&nbsp;&#10022;&nbsp;</span>
+              <a href="https://vizune.net" target="_blank" style="color:#89e8af; font-weight:700; text-decoration:none; letter-spacing:0.08em;">VIZUNE NETWORK</a>
+              <br><br>
+              You're getting this because you signed up for Vizune updates at vizune.com.<br>
+              <a href="{{ unsubscribe_url }}" style="color:#ffc7ef; text-decoration:underline;">Unsubscribe</a>
+              &nbsp;&middot;&nbsp;
+              <a href="{{ subscriber_preferences_url }}" style="color:#ffc7ef; text-decoration:underline;">Update your preferences</a>
+              <br><br>
+              Vizune Limited &middot; {{ address }}
+            </td>
+          </tr>
+
+        </table>
+        <!--[if mso]></td></tr></table><![endif]-->
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
